@@ -1,0 +1,72 @@
+Flying 
+-Mallard (flys)	
+-Steamer (flys)
+
+Quacking
+-Whistling (whistles)
+-
+species
+
+Interfaces: 
+
+Flying
+-landing();
+-flying();
+
+Quacking
+-Speak();
+
+Duck
+-color (delete)
+-size (delete)
+
+MallerDuck extends Duck implements FLying { 
+} 
+
+Good things: 
+-Easy to read
+-Use of interfaces
+
+
+
+Emily's 
+
+Duck
+-move();
+-makeNoise();
+
+MallardDuck extend Duck { 
+-move();
+-makeNoise();
+} 
+
+Other: 
+
+Bird
+-flight(Speed, height)
+
+Duck extends Bird 
+-quack();
+
+
+--------------
+Duck 
+
+
+
+Flying duck  QuackingDuck
+
+MallarDuck
+
+--this can result to class explosion
+
+Composition: one class is made of another, hybrid
+
+--3 Major Types of Object OP
+
+- genarlization
+- specilization
+- inheritence
+
+
+
