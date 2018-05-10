@@ -1,11 +1,13 @@
 package vor.priya.pizza;
 
-public class PizzaStore {
+abstract public class PizzaStore {
 	// open for extension, close for modification
-	private PizzaFactory pizzaFactory = new PizzaFactory();
+	// private PizzaFactory pizzaFactory = new PizzaFactory();
+
+	abstract Pizza createPizza(String type);
 
 	public Pizza makePizza(String type) {
-		return pizzaFactory.createPizza(type);
+		return createPizza(type);
 	}
 
 	public void bakePizza(Pizza pizza) {
