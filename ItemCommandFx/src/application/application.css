@@ -1,0 +1,24 @@
+AnchorPane { 
+	-fx-background-color: black
+}
+#splitPane { 
+	-fx-background-color: black ;
+	-fx-border-color: lightblue;
+	-fx-text-fill: white;
+}
+
+#itemSelectionLabel { 
+	-fx-text-fill: white
+}
+
+#ColorChangeLabel { 
+	-fx-text-fill: white
+}
+
+#buttonGridPane { 
+	
+}
+
+#bottomPane { 
+	-fx-background-color: beige 
+}

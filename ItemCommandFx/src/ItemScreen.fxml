@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="650.0" minWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.ItemScreen">
+  <!-- TODO Add Nodes -->
+  <children>
+    <SplitPane fx:id="splitPane" dividerPositions="0.43681747269890797" focusTraversable="true" layoutX="7.0" layoutY="14.0" prefHeight="166.0" prefWidth="643.0">
+      <items>
+        <AnchorPane fx:id="topLeftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <ChoiceBox fx:id="itemSelection" layoutX="10.0" layoutY="24.0" prefWidth="175.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value=" " />
+                  <String fx:value="Dot" />
+                </FXCollections>
+              </items>
+            </ChoiceBox>
+            <Label fx:id="itemSelectionLabel" layoutX="14.0" layoutY="4.0" text="Item Selection:" />
+            <ChoiceBox fx:id="colorChangeSelection" layoutX="10.0" layoutY="100.0" prefWidth="175.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value=" " />
+                  <String fx:value="Red" />
+                  <String fx:value="Black" />
+               
+                </FXCollections>
+              </items>
+            </ChoiceBox>
+            <Label fx:id="colorChangeLabel" layoutX="14.0" layoutY="72.0" text="Color Change:" />
+          </children>
+        </AnchorPane>
+        <AnchorPane fx:id="topAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="164.0" prefWidth="352.0">
+          <children>
+            <GridPane fx:id="buttonGridPane" layoutX="0.0" layoutY="17.0" prefHeight="132.0" prefWidth="352.0">
+              <children>
+                <Button fx:id="topButton" mnemonicParsing="false" prefWidth="74.0" text="Top" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Button fx:id="leftButton" mnemonicParsing="false" prefWidth="63.0" text="Left" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="rightButton" mnemonicParsing="false" text="Right" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Button fx:id="bottomButton" mnemonicParsing="false" text="Bottom" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+    <Pane fx:id="bottomPane" layoutX="14.0" layoutY="194.0" prefHeight="442.0" prefWidth="629.0">
+      <children>
+        <GridPane fx:id="mainGrid" layoutX="5.0" layoutY="0.0" prefHeight="442.0" prefWidth="621.0000999999975" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
