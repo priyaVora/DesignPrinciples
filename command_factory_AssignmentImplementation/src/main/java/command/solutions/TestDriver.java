@@ -38,19 +38,19 @@ public class TestDriver {
 //		 rc.pressUndoButton();
 //		 rc.pressUndoButton();
 		 
-//		 System.out.println("-------------------------------------");
-//		 rc.program(0, 0, new ItemChangedColorsCommandBlack(item, item.getColorChange() != null ? item.getColorChange() : "Black"));
-//		 rc.program(0, 1, new ItemMoveCommandBottom(item, item.getMovement() != null ? item.getMovement(): "Bottom"));
-//		 rc.program(0, 2, new ItemMoveCommandTop(item, item.getMovement() != null ? item.getMovement(): "Top"));
-//		 rc.program(0, 3,new ItemChangeColorsCommandRed(item, item.getColorChange() != null ? item.getColorChange() : "Red"));
-//		 rc.pressButton(0, 0);
-//		 rc.pressButton(0, 1);
-//		 rc.pressButton(0, 2);
-//		 rc.pressButton(0, 3);
-//		 System.out.println("\n***Undo Commands");
-//		 rc.pressUndoButton();
-//		 rc.pressUndoButton();
-//		 rc.pressUndoButton();
-//		 rc.pressUndoButton();
+		 System.out.println("-------------------------------------");
+		 rc.program(0, 0, new ItemChangedColorsCommandBlack(item, item.getColorChange() != null ? item.getColorChange() : "Black"));
+		 rc.program(0, 1, new ItemMoveCommandBottom(item, item.getMovement() != null ? item.getMovement(): "Bottom"));
+		 rc.program(0, 2, new ItemMoveCommandTop(item, item.getMovement() != null ? item.getMovement(): "Top"));
+		 rc.program(0, 3,new ItemChangeColorsCommandRed(item, item.getColorChange() != null ? item.getColorChange() : "Red"));
+		 rc.pressButton(0, 0);
+		 rc.pressButton(0, 1);
+		 rc.pressButton(0, 2);
+		 rc.pressButton(0, 3);
+		 System.out.println("\n***Undo Commands");
+		 rc.pressUndoButton();
+		 rc.pressUndoButton();
+		 rc.pressUndoButton();
+		 rc.pressUndoButton();
 	}
 }
