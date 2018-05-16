@@ -4,8 +4,8 @@ import java.util.Stack;
 
 public class ItemControl {
 
-	public static final int ROWS = 8;
-	public static final int COLS = 2;
+	public static final int ROWS = 50;
+	public static final int COLS = 50;
 	
 	private Command[][] buttons = new Command[ROWS][COLS];
 	
