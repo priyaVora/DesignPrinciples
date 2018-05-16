@@ -9,7 +9,7 @@ import java.util.Calendar;
 public class LogFileWriter implements FileWriter {
 
 	private FileOutputStream fileOut;
-	private FileInputStream fileIn;
+	
 
 	public LogFileWriter(String path) throws FileNotFoundException {
 		this.setFileOutputStream(path);
@@ -27,10 +27,5 @@ public class LogFileWriter implements FileWriter {
 		fileOut = new FileOutputStream(path);
 	}
 
-	private void setFileInputStream(String path) throws FileNotFoundException {
-		if (path == null) {
-			throw new IllegalArgumentException("cannot be null");
-		}
-		fileIn = new FileInputStream(path);
-	}
+	
 }

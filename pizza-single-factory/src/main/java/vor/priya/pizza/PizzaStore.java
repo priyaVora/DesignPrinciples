@@ -2,12 +2,17 @@ package vor.priya.pizza;
 
 abstract public class PizzaStore {
 	// open for extension, close for modification
-	// private PizzaFactory pizzaFactory = new PizzaFactory();
+	private PizzaFactory pizzaFactory;
 
-	abstract Pizza createPizza(String type);
+	abstract PizzaFactory createFactory();
+
+	public PizzaStore() {
+		this.pizzaFactory = this.createFactory();
+	}
 
 	public Pizza makePizza(String type) {
-		return createPizza(type);
+		//return null;
+		return pizzaFactory.createPizza(type);
 	}
 
 	public void bakePizza(Pizza pizza) {
@@ -15,7 +20,7 @@ abstract public class PizzaStore {
 	}
 
 	public void box(Pizza p) {
-		System.out.println("Boxing piza: " + p);
+		System.out.println("Boxing Pizza: " + p);
 	}
 
 	public void cut(Pizza p) {
