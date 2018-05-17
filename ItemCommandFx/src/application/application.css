@@ -27,14 +27,22 @@ AnchorPane {
 	-fx-background-color: black;
 }
 
-#gridResult { 
-	-fx-border-color: red;
-}
 
-.gridButtons { 
+.gridButtonsRed { 
 	-fx-background-color: black;
 	-fx-border-color: blue;
 }
-.currentButton { 
-	-fx-background-color: white;
+.currentButtonRed { 
+	-fx-background-color: red;
+		-fx-border-color: black;
 }
+
+.currentButtonBlack { 
+	-fx-background-color: black;
+	-fx-border-color: white;
+}
+.gridButtonsBlack { 
+	-fx-background-color: white;
+	-fx-border-color: red;
+	
+	}

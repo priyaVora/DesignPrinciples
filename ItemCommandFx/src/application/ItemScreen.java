@@ -52,29 +52,9 @@ public class ItemScreen implements Initializable {
 		// Image imageDecline = new
 		// Image(getClass().getResourceAsStream("Images\\LeftArrow.jpg"));
 		// leftButton.setGraphic(new ImageView(imageDecline));
-		Button field = new Button();
-		field.setText("Priya");
-		field.setPrefWidth(field.getText().length() * 14);
-		field.getStyleClass().add("gridResult");
-
-		for (int i = 0; i < 14; i++) {
-			for (int j = 0; j < 29; j++) {
-				Button newButton = new Button("");
-				if(i == 0 && j == 0) { 
-					newButton.getStyleClass().add("currentButton");
-				} else { 
-					newButton.getStyleClass().add("gridButtons");
-				}
-				
-				mainGrid.add(newButton, j, i);
-			}
-
-		}
-
-		// mainGrid.getColumnConstraints().add(new ColumnConstraints(10)); // column 0
-		// is 100 wide
-		// mainGrid.getRowConstraints().add(new RowConstraints(10)); // column 1 is 200
-		// wide
+		itemSelection.setValue(itemSelection.getItems().get(0));
+		ColorChangeSelection.setValue(ColorChangeSelection.getItems().get(1));
+		
 		mainGrid.setGridLinesVisible(true);
 		leftButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -121,6 +101,33 @@ public class ItemScreen implements Initializable {
 				} else if (selected.equals("Black")) {
 					System.out.println("Black");
 				}
+				
+				for (int i = 0; i < 14; i++) {
+					for (int j = 0; j < 29; j++) {
+						Button newButton = new Button("");
+
+						if (ColorChangeSelection.getItems().get(ColorChangeSelection.getSelectionModel().getSelectedIndex())
+								.equals("Red")) {
+							if (i == 0 && j == 0) {
+								newButton.getStyleClass().add("currentButtonRed");
+							} else {
+								newButton.getStyleClass().add("gridButtonsRed");
+							}
+						} else if (ColorChangeSelection.getItems().get(ColorChangeSelection.getSelectionModel().getSelectedIndex())
+								.equals("Black")) {
+							if (i == 0 && j == 0) {
+								newButton.getStyleClass().add("currentButtonBlack");
+							} else {
+								newButton.getStyleClass().add("gridButtonsBlack");
+							}
+						}
+
+						
+
+						mainGrid.add(newButton, j, i);
+					}
+
+				}
 
 			}
 		});
@@ -131,7 +138,7 @@ public class ItemScreen implements Initializable {
 			public void handle(ActionEvent arg0) {
 				String selected = itemSelection.getItems().get(itemSelection.getSelectionModel().getSelectedIndex());
 
-				if (selected.equals("Dot")) {
+				if (selected.equals("Button")) {
 					System.out.println(selected);
 				}
 
