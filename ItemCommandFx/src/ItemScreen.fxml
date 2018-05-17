@@ -22,17 +22,16 @@
               </items>
             </ChoiceBox>
             <Label fx:id="itemSelectionLabel" layoutX="14.0" layoutY="4.0" text="Item Selection:" />
-            <ChoiceBox fx:id="colorChangeSelection" layoutX="10.0" layoutY="100.0" prefWidth="175.0">
+            <ChoiceBox fx:id="ColorChangeSelection" layoutX="10.0" layoutY="100.0" prefWidth="175.0">
               <items>
                 <FXCollections fx:factory="observableArrayList">
                   <String fx:value=" " />
                   <String fx:value="Red" />
                   <String fx:value="Black" />
-               
                 </FXCollections>
               </items>
             </ChoiceBox>
-            <Label fx:id="colorChangeLabel" layoutX="14.0" layoutY="72.0" text="Color Change:" />
+            <Label fx:id="ColorChangeLabel" layoutX="14.0" layoutY="72.0" text="Color Change:" />
           </children>
         </AnchorPane>
         <AnchorPane fx:id="topAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="164.0" prefWidth="352.0">
@@ -63,7 +62,7 @@
     </SplitPane>
     <Pane fx:id="bottomPane" layoutX="14.0" layoutY="194.0" prefHeight="442.0" prefWidth="629.0">
       <children>
-        <GridPane fx:id="mainGrid" layoutX="5.0" layoutY="0.0" prefHeight="442.0" prefWidth="621.0000999999975" />
+        <GridPane fx:id="mainGrid" layoutX="-3.0" layoutY="0.0" prefHeight="442.0000999999975" prefWidth="628.999977929685" />
       </children>
     </Pane>
   </children>

@@ -16,9 +16,25 @@ AnchorPane {
 }
 
 #buttonGridPane { 
-	
+
 }
 
 #bottomPane { 
-	-fx-background-color: beige 
+	-fx-background-color: black;
+}
+
+#mainGrid { 
+	-fx-background-color: black;
+}
+
+#gridResult { 
+	-fx-border-color: red;
+}
+
+.gridButtons { 
+	-fx-background-color: black;
+	-fx-border-color: blue;
+}
+.currentButton { 
+	-fx-background-color: white;
 }
