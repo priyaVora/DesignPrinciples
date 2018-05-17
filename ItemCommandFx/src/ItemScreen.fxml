@@ -40,6 +40,7 @@
                 <Button fx:id="leftButton" mnemonicParsing="false" prefWidth="63.0" text="Left" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Button fx:id="rightButton" mnemonicParsing="false" text="Right" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                 <Button fx:id="bottomButton" mnemonicParsing="false" text="Bottom" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Button fx:id="undoButton" mnemonicParsing="false" text="Undo" GridPane.columnIndex="2" GridPane.rowIndex="1" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

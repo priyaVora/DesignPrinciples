@@ -30,6 +30,8 @@ public class ItemScreen implements Initializable {
 	Button leftButton;
 	@FXML
 	Button bottomButton;
+	@FXML
+	Button undoButton;
 
 	@FXML
 	ChoiceBox<String> ColorChangeSelection;
@@ -48,6 +50,7 @@ public class ItemScreen implements Initializable {
 		rightButton = new Button();
 		topButton = new Button();
 		bottomButton = new Button();
+		undoButton = new Button();
 
 		ColorChangeSelection = new ChoiceBox<String>();
 		itemSelection = new ChoiceBox<String>();
@@ -172,6 +175,20 @@ public class ItemScreen implements Initializable {
 			}
 		});
 
+		undoButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Undo!");
+				rc.pressUndoButton();
+				
+			}
+		});
+		
+		
+		
+		
+		
 		ColorChangeSelection.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
