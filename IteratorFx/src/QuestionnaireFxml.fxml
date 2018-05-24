@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="775.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.QuestionnaireController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="65.0" prefHeight="689.0" prefWidth="572.0">
+      <content>
+        <AnchorPane id="scrollContent" minHeight="0.0" minWidth="0.0" prefHeight="688.0" prefWidth="571.0" />
+      </content>
+    </ScrollPane>
+    <ChoiceBox id="" fx:id="operationChoiceBox" layoutX="366.0" layoutY="14.0" prefWidth="220.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Select Operation" />
+          <String fx:value="Make A Questionnaire" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Label fx:id="questionnaireLabel" layoutX="14.0" layoutY="18.0" prefWidth="202.0" text="Questionnaire: Select / Make" />
+  </children>
+</AnchorPane>

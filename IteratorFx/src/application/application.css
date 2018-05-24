@@ -1,0 +1,8 @@
+AnchorPane { 
+	-fx-background-color: black;
+}
+
+#questionnaireLabel { 
+	-fx-text-fill: white;
+}
+
