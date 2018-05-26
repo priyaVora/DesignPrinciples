@@ -6,29 +6,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="775.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.QuestionnaireController">
+<AnchorPane fx:id="FirstPane" prefHeight="775.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.QuestionnaireController">
   <!-- TODO Add Nodes -->
   <children>
-    <SplitPane fx:id="splitPane" dividerPositions="0.17559523809523808" focusTraversable="true" layoutX="15.0" layoutY="66.0" orientation="VERTICAL" prefHeight="674.0" prefWidth="557.0">
+    <SplitPane fx:id="splitPane" dividerPositions="0.1847041847041847" focusTraversable="true" layoutX="15.0" layoutY="66.0" orientation="VERTICAL" prefHeight="695.0" prefWidth="571.0">
       <items>
-        <AnchorPane fx:id="topPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+        <AnchorPane fx:id="topPane" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="569.0">
           <children>
-            <ScrollPane fx:id="scrollPane" layoutX="0.0" layoutY="-1.0">
+            <ScrollPane fx:id="scrollPane" layoutX="0.0" layoutY="-1.0" prefHeight="132.0" prefWidth="570.0">
               <content>
                 <AnchorPane id="scrollContent" minHeight="0.0" minWidth="0.0" prefHeight="688.0" prefWidth="571.0">
                   <children>
-                    <GridPane fx:id="mainGrid" layoutX="0.0" layoutY="0.0" prefHeight="674.0" prefWidth="557.0" />
+                    <GridPane fx:id="mainGrid" layoutX="-10.0" layoutY="0.0" prefHeight="110.0" prefWidth="580.0" />
                   </children>
                 </AnchorPane>
               </content>
             </ScrollPane>
           </children>
         </AnchorPane>
-        <AnchorPane id="bottomPane" fx:id="bottomPaneBig" minHeight="0.0" minWidth="0.0">
+        <AnchorPane fx:id="bottomPaneBig" minHeight="0.0" minWidth="0.0">
           <children>
-            <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="551.0" prefWidth="555.0">
+            <ScrollPane fx:id="bottomScroll" layoutX="0.0" layoutY="0.0" prefHeight="562.0" prefWidth="569.0">
               <content>
-                <AnchorPane id="Content" fx:id="bottomPane" minHeight="0.0" minWidth="0.0" />
+                <AnchorPane fx:id="bottomPane" minHeight="562.0" minWidth="569.0"/>
               </content>
             </ScrollPane>
           </children>

@@ -38,7 +38,9 @@ public class QuestionnaireController implements Initializable {
 	TextField sectionField = new TextField();
 	TextField subSectionField = new TextField();
 
+	
 	GridPane bottomGrid;
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -154,8 +156,6 @@ public class QuestionnaireController implements Initializable {
 								Integer.parseInt(sectionCount);
 								Integer.parseInt(subSectionCount);
 
-					
-							
 								System.out.println("Section Count: " + sectionCount);
 								System.out.println("Sub-Section Count: " + subSectionCount);
 
