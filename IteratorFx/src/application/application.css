@@ -91,7 +91,7 @@ AnchorPane {
 }
 
 .hBoxLabel { 
-	-fx-text-fill: beige;
+	-fx-text-fill: white;
 }
 
 .hBoxTextField { 
@@ -119,5 +119,10 @@ AnchorPane {
 
 #qField { 
 	-fx-background-color: red;
-	-fx-padding: 3px;
+	-fx-padding: 3.0px;
+}
+
+.titleLabel { 
+	-fx-text-fill: white;
+	-fx-alignment: center;
 }

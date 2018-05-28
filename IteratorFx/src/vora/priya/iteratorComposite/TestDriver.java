@@ -27,6 +27,8 @@ public class TestDriver {
 
 		while (iterator.hasNext()) {
 			iterator.next().print(); 
+			QuizComponent it = iterator.next();
+	
 		}
 	}
 

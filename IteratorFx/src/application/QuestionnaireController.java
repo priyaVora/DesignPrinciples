@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.w3c.dom.ls.LSInput;
+
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -24,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import vora.priya.iteratorComposite.Category;
 import vora.priya.iteratorComposite.Question;
 import vora.priya.iteratorComposite.QuizComponent;
@@ -44,9 +48,11 @@ public class QuestionnaireController implements Initializable {
 	TextField sectionField = new TextField();
 	TextField subSectionField = new TextField();
 
-	GridPane bottomGrid;
-	// List<QuizComponent> listOfQuizEntries = new ArrayList<QuizComponent>();
+	GridPane bottomGrid = new GridPane();
 	Map<Integer, Category> categoryMap = new HashMap<Integer, Category>();
+	Map<String, TextField> formMap = new HashMap<String, TextField>();
+
+	Map<String, Map<String, TextField>> title_form_Map = new HashMap<String, Map<String, TextField>>();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -56,7 +62,38 @@ public class QuestionnaireController implements Initializable {
 			public void handle(ActionEvent event) {
 				String selectedOperation = operationChoiceBox.getItems()
 						.get(operationChoiceBox.getSelectionModel().getSelectedIndex());
+				System.out.println("oPEAT: " + selectedOperation);
 				bottomPane.getChildren().clear();
+
+				if (title_form_Map.containsKey(selectedOperation.trim())) {
+					System.out.println("THE FORM IS READY!");
+					bottomGrid.getChildren().clear();
+					bottomPane.getChildren().clear();
+					Map<String, TextField> form = title_form_Map.get(selectedOperation.trim());
+
+					int rowCounter = 0;
+					for (Map.Entry<String, TextField> entry : form.entrySet()) {
+						char start = entry.getKey().charAt(0);
+
+						if (start == '_') {
+
+							System.out.println("_");
+							addCategoryLabel(rowCounter, 1, "CATEGORY: ");
+							rowCounter++;
+						} else if (start == 'Q') {
+
+							System.out.println("Q");
+							addQuestionLabel(rowCounter, 1, "Question: ");
+							rowCounter++;
+						} else if (start == 'S') {
+
+							System.out.println("S");
+							addSubSectionLabel(rowCounter, 1, "Sub-Section: ");
+							rowCounter++;
+						}
+					}
+					bottomPane.getChildren().add(bottomGrid);
+				}
 				if (!(selectedOperation.trim().equals("Select Operation"))) {
 					questionnaireLabel.setText(operationChoiceBox.getItems()
 							.get(operationChoiceBox.getSelectionModel().getSelectedIndex()));
@@ -72,6 +109,7 @@ public class QuestionnaireController implements Initializable {
 				}
 			}
 		});
+
 	}
 
 	public QuestionnaireController() {
@@ -91,21 +129,31 @@ public class QuestionnaireController implements Initializable {
 		bottomGrid.getStyleClass().add("bottomGrid");
 	}
 
-	public void setGridView() {
-		mainGrid.getChildren().clear();
+	public List<String> setTopControlsList() {
 		List<String> controlsList = new ArrayList<String>();
 		controlsList.add("TextField");
 		controlsList.add("Label");
 		controlsList.add("TextField");
 		controlsList.add("Label");
 		controlsList.add("Button");
+		return controlsList;
+	}
 
+	public List<String> setTopControlsTexts() {
 		List<String> controlTexts = new ArrayList<String>();
 		controlTexts.add("---");
 		controlTexts.add("Section");
 		controlTexts.add("---");
 		controlTexts.add("Sub-Section");
 		controlTexts.add("Create");
+		return controlTexts;
+	}
+
+	public void setGridView() {
+		mainGrid.getChildren().clear();
+
+		List<String> controlsList = setTopControlsList();
+		List<String> controlTexts = setTopControlsTexts();
 
 		int index = 0;
 		int counter = 1;
@@ -174,6 +222,7 @@ public class QuestionnaireController implements Initializable {
 								System.out.println("Section Index is : " + sectionIndex);
 
 								System.out.println("///////////////////////////////////////////");
+
 								System.out.println("Wanted: " + sectionCount + " Sections");
 								System.out.println("Wanted: " + sectionCount + " Sub-Sections");
 								System.out.println("Wanted: " + 1 + " Question(s)");
@@ -251,43 +300,16 @@ public class QuestionnaireController implements Initializable {
 		mainGrid.add(questionaireLabel, 1, 3);
 	}
 
-	protected void setControlsOnForm(List<String> operationList) {
-		int row = 0;
-		for (String eachOperation : operationList) {
-
-			int categoryCount = 0;
-
-			Category currentCategory = null;
-			if (eachOperation.equals("Section")) {
-				currentCategory = categoryMap.get(categoryCount);
-				categoryCount++;
-				// add a section to the form
-				System.out.println("Current Row for Section: " + row);
-				String sectionText = "  Section:      ";
-				String promptText = "Enter Category Here";
-				addSectionToForm(row, 1, promptText, sectionText);
-				row++;
-				System.out.println("   Row: " + row);
-			} else if (eachOperation.equals("Sub-Section")) {
-				// add a subsection to the form
-				System.out.println("Current Row for Sub Section: " + row);
-				String sectionText = "Sub-Section:      ";
-				String promptText = "Enter Sub-Section Here";
-				addSectionToForm(row, 1, promptText, sectionText);
-				row++;
-			} else if (eachOperation.equals("Question")) {
-				// add a question to the form
-				System.out.println("Current Row for Question: " + row);
-				String sectionText = "Question:      ";
-				String promptText = "Enter Question Here";
-				addSectionToForm(row, 1, promptText, sectionText);
-				row++;
-			}
+	private String generateMapCellName(String sectionType, String sectionSubCount, String categoryCount) {
+		if (sectionType.equals("Section:")) {
+			sectionType = "";
 		}
+		return sectionType + "_" + sectionSubCount + categoryCount;
 	}
 
-	public void addSectionToForm(int row, int col, String promptText, String labelText) {
-		System.out.println("\nSection is here!");
+	public TextField addSectionToForm(int row, int col, String promptText, String labelText, String sectionCount,
+			String categoryCount) {
+		String name = generateMapCellName(labelText.trim(), sectionCount, categoryCount);
 
 		HBox box = new HBox();
 		Label label = new Label(labelText);
@@ -303,122 +325,177 @@ public class QuestionnaireController implements Initializable {
 		box.getChildren().add(label);
 		box.getChildren().add(field);
 
+		formMap.put(name, field);
+
+		bottomGrid.add(box, col, row);
+		return field;
+	}
+
+	public void addCategoryLabel(int row, int col, String labelText) {
+
+		HBox box = new HBox();
+		Label label = new Label(labelText);
+
+		box.getStyleClass().add("hBox");
+		label.getStyleClass().add("hBoxLabel");
+
+		box.getChildren().add(label);
+
 		bottomGrid.add(box, col, row);
 	}
 
-	public void addSubSectionToForm(int row, int col) {
-		HBox sectionHBox = new HBox();
-		TextField field = new TextField();
-		Label label = new Label("Sub-Section:      ");
-		Button addButton = new Button("+");
-		Button subButton = new Button("-");
+	public void addSubSectionLabel(int row, int col, String labelText) {
+		HBox box = new HBox();
+		Label label = new Label(labelText);
 
-		addButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("Add Sub Section!");
-
-			}
-		});
-
-		subButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("Subtract Sub-Section!");
-
-			}
-		});
-
-		sectionHBox.getStyleClass().add("hBox");
+		box.getStyleClass().add("hBox");
 		label.getStyleClass().add("hBoxLabel");
-		field.getStyleClass().add("hBoxTextField");
-		addButton.getStyleClass().add("addButton");
-		subButton.getStyleClass().add("subButton");
 
-		sectionHBox.getChildren().add(label);
-		sectionHBox.getChildren().add(field);
-		sectionHBox.getChildren().add(addButton);
-		sectionHBox.getChildren().add(subButton);
-		bottomGrid.add(sectionHBox, row, col);
+		box.getChildren().add(label);
+
+		bottomGrid.add(box, col, row);
+		
 	}
 
-	protected void setControlsOnBottomGrid(int gridRows, int sectionIndex) {
-		int subIndex = 1;
+	public void addQuestionLabel(int row, int col, String labelText) {
+		HBox box = new HBox();
+		Label label = new Label(labelText);
 
-		for (int j = 0; j < gridRows; j++) {
-			System.out.println();
-			if (subIndex == 1) {
-				System.out.println("\nSection is here!");
-				subIndex++;
+		box.getStyleClass().add("hBox");
+		label.getStyleClass().add("hBoxLabel");
 
-				HBox box = new HBox();
-				Label label = new Label("  Section:      ");
-				TextField field = new TextField();
+		box.getChildren().add(label);
 
-				field.setPromptText("Enter Category Here");
-				field.setPrefWidth(field.getPromptText().length() * 14);
+		bottomGrid.add(box, col, row);
+	}
 
-				box.getStyleClass().add("hBox");
-				label.getStyleClass().add("hBoxLabel");
-				field.getStyleClass().add("hBoxTextField");
+	public void addAnswerBox(int row, int col) {
+		HBox box = new HBox();
+		TextField field = new TextField();
 
-				box.getChildren().add(label);
-				box.getChildren().add(field);
+		field.setPromptText("Enter Answer Here.");
+		field.setPrefWidth(field.getPromptText().length() * 14);
 
-				bottomGrid.add(box, 1, j);
+		box.getStyleClass().add("hBox");
+		field.getStyleClass().add("hBoxTextField");
 
-			} else {
-				System.out.println("   Sub Section is here!");
-				subIndex++;
+		box.getChildren().add(field);
 
-				HBox sectionHBox = new HBox();
-				TextField field = new TextField();
-				Label label = new Label("Sub-Section:      ");
-				Button addButton = new Button("+");
-				Button subButton = new Button("-");
+		bottomGrid.add(box, col, row);
+	}
 
-				addButton.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Add Sub Section!");
+	// public TextField addSectToForm(int row, int col, String promptText, String
+	// labelText) {
+	//
+	// HBox box = new HBox();
+	// Label label = new Label(labelText);
+	// TextField field = new TextField();
+	//
+	// field.setPromptText(promptText);
+	// field.setPrefWidth(field.getPromptText().length() * 14);
+	//
+	// box.getStyleClass().add("hBox");
+	// label.getStyleClass().add("hBoxLabel");
+	// field.getStyleClass().add("hBoxTextField");
+	//
+	// box.getChildren().add(label);
+	// box.getChildren().add(field);
+	//
+	// bottomGrid.add(box, col, row);
+	// return field;
+	// }
 
-					}
-				});
+	protected void setControlsOnForm(List<String> operationList) {
+		int row = 0;
 
-				subButton.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Subtract Sub-Section!");
+		int categoryCount = 0;
+		int subSectionCount = 0;
+		int questionCount = 0;
+		for (String eachOperation : operationList) {
 
-					}
-				});
+			Category currentCategory = null;
+			List<String> listOfFields = new ArrayList<String>();
+			if (eachOperation.equals("Section")) {
+				currentCategory = categoryMap.get(categoryCount);
 
-				sectionHBox.getStyleClass().add("hBox");
-				label.getStyleClass().add("hBoxLabel");
-				field.getStyleClass().add("hBoxTextField");
-				addButton.getStyleClass().add("addButton");
-				subButton.getStyleClass().add("subButton");
+				subSectionCount = 0;
+				questionCount = 0;
+				String sectionText = "  Section:      ";
+				String promptText = "Enter Category Here";
+				categoryCount++;
+				TextField field = addSectionToForm(row, 1, promptText, sectionText, "", "_Category_" + (categoryCount));
+				row++;
+				System.out.println("   Row: " + row);
 
-				sectionHBox.getChildren().add(label);
-				sectionHBox.getChildren().add(field);
-				sectionHBox.getChildren().add(addButton);
-				sectionHBox.getChildren().add(subButton);
-				bottomGrid.add(sectionHBox, 1, j);
-
+			} else if (eachOperation.equals("Sub-Section")) {
+				String sectionText = "Sub-Section:      ";
+				String promptText = "Enter Sub-Section Here";
+				TextField field = addSectionToForm(row, 1, promptText, sectionText, "" + subSectionCount,
+						"_Category_" + categoryCount);
+				listOfFields.add("");
+				subSectionCount++;
+				row++;
+			} else if (eachOperation.equals("Question")) {
+				String sectionText = "Question:      ";
+				String promptText = "Enter Question Here";
+				TextField field = addSectionToForm(row, 1, promptText, sectionText, "_SubSection_" + subSectionCount,
+						"_Category_" + categoryCount);
+				listOfFields.add("");
+				questionCount++;
+				row++;
 			}
-			if (subIndex > sectionIndex) {
-				subIndex = 1;
-			}
-
-			if (j == gridRows - 1) {
-				HBox box = new HBox();
-				box.getStyleClass().add("hBox");
-				box.getChildren().add(new Button("Save"));
-				bottomGrid.add(box, 2, 400);
-			}
-
 		}
+		TextField titleField = titleBox();
+		Button saveButton = saveButton();
+		saveButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
 
+				System.out.println("Save Button was Clicked! ");
+				String title = titleField.getText().trim();
+				System.out.println("****************************************");
+				System.out.println("\nTitle is: " + title);
+
+				title_form_Map.put(title, formMap);
+				System.out.println(" ");
+				for (Map.Entry<String, TextField> entry : formMap.entrySet()) {
+					System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue().getText());
+				}
+
+				formMap = new HashMap<String, TextField>();
+
+				System.out.println("****************************************");
+				if (!(operationChoiceBox.getItems().contains(title))) {
+					operationChoiceBox.getItems().add(title);
+				}
+
+			}
+		});
+
+	}
+
+	public Button saveButton() {
+		HBox box = new HBox();
+		box.getStyleClass().add("hBox");
+		Button saveButton = new Button("Save");
+
+		box.getChildren().add(saveButton);
+		bottomGrid.add(box, 2, 400);
+		return saveButton;
+	}
+
+	public TextField titleBox() {
+		HBox box = new HBox();
+		box.getStyleClass().add("hBox");
+		Label titleLabel = new Label("Title:        ");
+		titleLabel.getStyleClass().add("titleLabel");
+
+		TextField field = new TextField();
+		field.setPromptText("Enter a title");
+		box.getChildren().add(titleLabel);
+		box.getChildren().add(field);
+		bottomGrid.add(box, 1, 400);
+		return field;
 	}
 
 	public void button_RowFiller(int row, int col, int num) {
@@ -430,4 +507,5 @@ public class QuestionnaireController implements Initializable {
 			mainGrid.add(spaceFillerButton, j, row);
 		}
 	}
+
 }
