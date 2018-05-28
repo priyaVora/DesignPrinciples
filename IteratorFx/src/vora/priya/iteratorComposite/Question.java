@@ -1,5 +1,6 @@
 package vora.priya.iteratorComposite;
 
+import java.text.NumberFormat;
 import java.util.Iterator;
 
 public class Question extends QuizComponent {
@@ -15,7 +16,6 @@ public class Question extends QuizComponent {
 			public boolean hasNext() {
 				return false;
 			}
-
 			@Override
 			public QuizComponent next() {
 				return null;
@@ -37,5 +37,9 @@ public class Question extends QuizComponent {
 
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	
+	public void print() {
+		System.out.println(this.getQuestion() + "\t" + this.getAnswer());
 	}
 }
