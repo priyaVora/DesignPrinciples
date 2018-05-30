@@ -62,7 +62,6 @@ public class QuestionnaireController implements Initializable {
 			public void handle(ActionEvent event) {
 				String selectedOperation = operationChoiceBox.getItems()
 						.get(operationChoiceBox.getSelectionModel().getSelectedIndex());
-				System.out.println("oPEAT: " + selectedOperation);
 				bottomPane.getChildren().clear();
 
 				if (title_form_Map.containsKey(selectedOperation.trim())) {
@@ -72,26 +71,34 @@ public class QuestionnaireController implements Initializable {
 					Map<String, TextField> form = title_form_Map.get(selectedOperation.trim());
 
 					int rowCounter = 0;
+					int categoryCount = 0;
+					int subSectionCount = 0;
+
 					for (Map.Entry<String, TextField> entry : form.entrySet()) {
 						char start = entry.getKey().charAt(0);
 
 						if (start == '_') {
-
 							System.out.println("_");
-							addCategoryLabel(rowCounter, 1, "CATEGORY: ");
+							categoryCount++;
+							// addCategoryLabel(rowCounter, 1, "CATEGORY: ");
 							rowCounter++;
 						} else if (start == 'Q') {
-
+							Question q = new Question();
+							q.name = entry.getValue().getText().trim();
 							System.out.println("Q");
-							addQuestionLabel(rowCounter, 1, "Question: ");
+							// addQuestionLabel(rowCounter, 1, "Question: ");
 							rowCounter++;
 						} else if (start == 'S') {
-
 							System.out.println("S");
-							addSubSectionLabel(rowCounter, 1, "Sub-Section: ");
+							subSectionCount++;
+							// addSubSectionLabel(rowCounter, 1, "Sub-Section: ");
 							rowCounter++;
 						}
+
 					}
+
+					quizComponentSetter(form, categoryCount, subSectionCount);
+
 					bottomPane.getChildren().add(bottomGrid);
 				}
 				if (!(selectedOperation.trim().equals("Select Operation"))) {
@@ -112,7 +119,60 @@ public class QuestionnaireController implements Initializable {
 
 	}
 
-	public QuestionnaireController() {
+	protected void quizComponentSetter(Map<String, TextField> form, int categoryCount, int subsectionCount) {
+		int categoryStart = 1;
+		int categoryEnd = categoryCount;
+
+		int subSectionStart = 0;
+		int subSectionEnd = subsectionCount;
+
+		List<Category> listOfCategories = new ArrayList<Category>();
+
+		int catCounter = 0;
+
+		for (int i = categoryStart; i <= categoryEnd; i++) {
+			String findIndex = "_Category_" + i;
+			System.out.println("Category: " + findIndex + "  : " + form.get(findIndex).getText().trim());
+			Category newCategory = new Category();
+			newCategory.name = form.get(findIndex).getText().trim();
+			ArrayList<QuizComponent> listOfQuizEntries = new ArrayList<>();
+			ArrayList<QuizComponent> listOfQuestions = new ArrayList<>();
+			Category newSection = null;
+			Question newQuestion = null;
+
+			for (int j = 0; j < (subsectionCount / categoryCount); j++) {
+				newSection = new Category();
+				String findSubIndex = "Sub-Section:_" + j + findIndex;
+				System.out.println(findSubIndex + " :" + form.get(findSubIndex).getText());
+				newSection.name = form.get(findSubIndex).getText().trim();
+				listOfQuestions = new ArrayList<QuizComponent>();
+
+				newQuestion = new Question();
+				String findQuestion = "Question:__SubSection_" + (j + 1) + findIndex;
+				System.out.println("Question: " + findQuestion + " " + form.get(findQuestion).getText().trim());
+				newQuestion.name = form.get(findQuestion).getText().trim();
+				newQuestion.question = form.get(findQuestion).getText().trim();
+				listOfQuestions.add(newQuestion);
+				newSection.setQuizEntrikes(listOfQuestions);
+				listOfQuizEntries.add(newSection);
+
+				
+			}
+
+			
+
+			newCategory.setQuizEntrikes(listOfQuizEntries);
+			listOfCategories.add(catCounter, newCategory);
+
+			Iterator<QuizComponent> iterator = newCategory.getQuizEntries().iterator();
+			System.out.println(" ");
+			while (iterator.hasNext()) {
+				QuizComponent comp = iterator.next();
+				System.out.println("QUIZ COMP: " + comp.name);
+				
+				
+			}
+		}
 
 	}
 
@@ -354,7 +414,7 @@ public class QuestionnaireController implements Initializable {
 		box.getChildren().add(label);
 
 		bottomGrid.add(box, col, row);
-		
+
 	}
 
 	public void addQuestionLabel(int row, int col, String labelText) {
@@ -423,7 +483,7 @@ public class QuestionnaireController implements Initializable {
 				String sectionText = "  Section:      ";
 				String promptText = "Enter Category Here";
 				categoryCount++;
-				TextField field = addSectionToForm(row, 1, promptText, sectionText, "", "_Category_" + (categoryCount));
+				TextField field = addSectionToForm(row, 1, promptText, sectionText, "", "Category_" + (categoryCount));
 				row++;
 				System.out.println("   Row: " + row);
 
