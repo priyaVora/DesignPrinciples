@@ -1,1 +1,23 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+AnchorPane { 
+	-fx-background-color: black;
+}
+
+#titleLabel { 
+	-fx-text-fill: white;
+} 
+
+.topPane { 
+	-fx-background-color: beige;
+}
+
+#splitPane { 
+	-fx-alignment: center-right ;
+}
+
+#topGrid { 
+	-fx-background-color: bisque  ;
+}
+
+#bottomGrid { 
+	-fx-background-color: bisque;
+}
