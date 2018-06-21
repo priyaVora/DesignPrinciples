@@ -21,3 +21,8 @@ AnchorPane {
 #bottomGrid { 
 	-fx-background-color: bisque;
 }
+
+.Button { 
+	-fx-alignment: center;
+
+} 

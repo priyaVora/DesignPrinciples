@@ -6,18 +6,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="635.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.SurveyController">
+<AnchorPane prefHeight="935.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.SurveyController">
   <!-- TODO Add Nodes -->
   <children>
-    <SplitPane fx:id="splitPane" dividerPositions="0.5017361111111112" focusTraversable="true" layoutX="0.0" layoutY="82.0" orientation="VERTICAL" prefHeight="578.0" prefWidth="515.0">
+    <SplitPane fx:id="splitPane" dividerPositions="0.63689776733255" focusTraversable="true" layoutX="0.0" layoutY="82.0" orientation="VERTICAL" prefHeight="853.0" prefWidth="1000.0000999999975">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="302.0" prefWidth="508.0">
           <children>
-            <ScrollPane fx:id="topScrollPane" layoutX="0.0" layoutY="0.0" prefHeight="284.0" prefWidth="513.0">
+            <ScrollPane fx:id="topScrollPane" layoutX="0.0" layoutY="0.0" prefHeight="539.0" prefWidth="998.0">
               <content>
-                <AnchorPane fx:id="topAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="514.0">
+                <AnchorPane fx:id="topAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="524.0" prefWidth="997.0">
                   <children>
-                    <GridPane fx:id="topGrid" layoutX="0.0" layoutY="0.0" prefHeight="258.9999000000025" prefWidth="499.0" />
+                    <GridPane fx:id="topGrid" layoutX="0.0" layoutY="0.0" prefHeight="524.0" prefWidth="985.0" />
                   </children>
                 </AnchorPane>
               </content>
@@ -26,12 +26,11 @@
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
           <children>
-            <ScrollPane fx:id="bottomScrollPane" layoutX="0.0" layoutY="0.0" prefHeight="284.0" prefWidth="513.0">
+            <ScrollPane fx:id="bottomScrollPane" layoutX="0.0" layoutY="0.0" prefHeight="422.0" prefWidth="999.0">
               <content>
-                <AnchorPane fx:id="bottomAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="330.0" prefWidth="514.0">
+                <AnchorPane fx:id="bottomAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="998.0">
                   <children>
-                    <GridPane fx:id="bottomGrid" layoutX="-1.0" layoutY="0.0" prefHeight="259.0" prefWidth="499.0">
-                    </GridPane>
+                    <GridPane fx:id="bottomGrid" layoutX="-1.0" layoutY="0.0" prefHeight="422.0" prefWidth="999.0" />
                   </children>
                 </AnchorPane>
               </content>
@@ -46,7 +45,6 @@
         <ChoiceBox fx:id="operationChoiceBox" layoutX="333.0" layoutY="14.0" prefWidth="144.0">
           <items>
             <FXCollections fx:factory="observableArrayList">
-              <String fx:value="Select an operation:" />
               <String fx:value="Create a Survey" />
             </FXCollections>
           </items>
